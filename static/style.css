@@ -1,0 +1,43 @@
+.magenta {
+	background-color: #A80061;
+	color: white;
+}
+a {
+	color: #A80061!important;
+	font-weight: bold;
+}
+.accordion-button:not(.collapsed) {
+	background-color: #ddd;
+}
+.white {
+	color: white !important;
+}
+.box {
+	padding: 2em;
+}
+.box-sm {
+	padding: 2em 0;
+}
+.bi {
+	font-size: 1rem; 
+	padding:0.1em 0.3em;
+	background-color: #A80061;
+	color: white;
+	margin-right:0.2em;
+}
+ul {
+	padding-left: 0;
+	list-style: none;
+}
+.red {
+	color: red;
+}
+.green {
+	color: green;
+}
+small {
+	display: inline-block
+}
+h1 {
+	display: inline-block
+}

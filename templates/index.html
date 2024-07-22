@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Controle verklaringen</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+  {% autoescape off %}
+
+  <header class="py-3 mb-4 border-bottom magenta">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none white">
+        <span class="fs-4">DigiToegankelijk TOP</span>
+      </a>
+      <form action="/" method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+        <input class="form-control" type="search" name="ID" placeholder="{{error or '0000'}}" minlength="1" maxlength="4" required>
+        <!-- <input type="submit" class="button secondary" value="Submit"> -->
+      </form>
+    </div>
+  </header>
+
+  <div class="container-fluid pb-3 py-3 mb-4">
+    <h1 class="pb-3">Controle van verklaring <a href="{{'https://www.toegankelijkheidsverklaring.nl/register/' ~ ID or '0000'}}" target="_blank">{{ID or "0000"}}</a></h1><small>&nbsp({{(time ~ " s") if time else "-"}})</small>
+    <div class="d-grid gap-3" style="grid-template-columns: 2fr 1fr;">
+        <div class="bg-body-tertiary border rounded-3 box">
+          <h2>Deel 1: Eisen aan verklaring en onderbouwing</h2>
+          <div class="box-sm"> <!--Point1 -->
+            <h3><span class="bi">1</span> Verklaring is up-to-date</h3>
+            <p><b>Laatst gewijzigd: </b>{{last_change_date or "-"}}</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                    E-mailtekst: Verklaring is niet up-to-date
+                  </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point 2-->
+            <h3><span class="bi">2</span> Contactlinks werken</h3>
+            <p><b>Contact info: </b>{{contact_info or "-"}}</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                    E-mailtekst: Contactlinks werken niet
+                  </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+           <div class="box-sm"> <!--Point3 -->
+            <h3><span class="bi">3</span> Er zijn directe link(s) naar rapport(en) gebruikt</h3>
+            <p><b>Rapport 1: </b>{{report_date1 or "-"}} <a href="{{report1 or '-'}}" target="_blank">{{report1 or "-"}}</a></p>
+
+            <p><b>Rapport 2: </b>{{report_date2 or "-"}} <a href="{{report2 or '-'}}" target="_blank">{{report2 or "-"}}</a></p>
+
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                    E-mailtekst: Link naar het rapport werkt niet
+                  </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point4 -->
+            <h3><span class="bi">4</span> Alle onderdelen van site of app zijn onderzocht</h3>
+            <p><b>Hoofddomein: </b>{{main_url or "-"}}</p>
+            <p><b>Subdomein(en): </b>{{other_url or "-"}}</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    Scopeverschil
+                  </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                    Niet alles is onderzocht
+                  </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+           <div class="box-sm"> <!--Point5 -->
+            <h3><span class="bi">5</span> Alle 50 eisen van de norm WCAG 2.1 op niveau A en AA zijn onderzocht</h3>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                    Alleen content is onderzocht
+                  </button>
+                </h2>
+                <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                    Alleen techniek is onderzocht
+                  </button>
+                </h2>
+                <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point6 -->
+            <h3><span class="bi">6</span>De status klopt</h3>
+            <p><b>De status van deze website is: </b>{{status or "-"}}</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                    A met fouten
+                  </button>
+                </h2>
+                <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                    Meer issues
+                  </button>
+                </h2>
+                <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point7 -->
+            <h3><span class="bi">7</span>WCAG-EM of een gelijkwaardige methode is gebruikt</h3>
+            <p class="{{'green' if search1_1 == 'Present' else 'red'}}"><b>{{search1_1 or "-"}}</b></p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                    WCAG-EM of gelijkwaardig ontbreekt
+                  </button>
+                </h2>
+                <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <h2>Deel 2: Eisen aan elk onderzoeksrapport</h2>
+          <div class="box-sm"> <!--Point8 -->
+            <h3><span class="bi">8</span>Eventuele automatische tools voldoen aan het ACT Rules Format</h3>
+            <p><b>Niet op getest</b></p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                    Niet op getest
+                  </button>
+                </h2>
+                <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point9 -->
+            <h3><span class="bi">9</span>De scope van het onderzoek is genoemd</h3>
+            <p>{{scope1 or "-"}}</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                    De scope is niet ...
+                  </button>
+                </h2>
+                <div id="collapse12" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point10 -->
+            <h3><span class="bi">10</span>Het basisniveau van toegankelijkheidsondersteuning is genoemd</h3>
+            <p class="{{'green' if search1_2 == 'Present' else 'red'}}"><b>{{search1_2 or "-"}}</b></p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                    Het basisniveau is niet ...
+                  </button>
+                </h2>
+                <div id="collapse13" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point11 -->
+            <h3><span class="bi">10</span>De gebruikte technologieën van de website of app zijn genoemd</h3>
+            <p class="{{'green' if search1_3 == 'Present' else 'red'}}"><b>{{search1_3 or "-"}}</b></p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                    Het basisniveau is niet ...
+                  </button>
+                </h2>
+                <div id="collapse14" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point12-->
+            <h3><span class="bi">12</span>De steekproef staat in het rapport</h3>
+            <p>{{samples1 or "-"}}</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                    De steekproef ...
+                  </button>
+                </h2>
+                <div id="collapse15" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="box-sm"> <!--Point13-->
+            <h3><span class="bi">13</span>De bij het onderzoek gebruikte browsers en softwareprogramma's zijn genoemd</h3>
+             <p class="{{'green' if search1_4 == 'Present' else 'red'}}"><b>{{search1_4 or "-"}}</b></p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                    De steekproef ...
+                  </button>
+                </h2>
+                <div id="collapse16" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+       <div class="bg-body-tertiary border rounded-3 box">
+        <h3>Info over de verklaring</h3>
+        <ul>
+          <li><b>Link verklaring:</b><a href="{{url_statement or '-'}}" target="_blank"> {{url_statement or "-"}}</a></li>
+          <li><b>De status van deze website is:</b> {{status or "-"}}</li>
+          <li><b>De annotatie is: </b>{{annotation or "-"}}</li>
+          <li><b>Datum laatste contact uit spreadsheet: </b>{{contact_date or "-"}}</li>
+          <li><b>Bestaande issues indien aanwezig: </b>{{issues_statement or "-"}}</li>
+          <li><b>Aanvullende info: </b>{{extra_info or "-"}}</li>
+        </ul>
+        <form>
+          <label for="exampleFormControlTextarea1" class="form-label">Nieuwe issues</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <button type="submit" class="btn btn-primary mb-3">Verstuur</button>
+        </form>
+       </div>
+      
+    </div>
+  </div>
+
+  <div class="container-fluid pb-3 py-3 mb-4 ">
+     <div class="d-grid gap-3" style="grid-template-columns: 1fr 1fr;">
+      <div class="bg-body-tertiary border rounded-3 box">
+        <h4>Rapport 1</h4>
+        <table>
+            <tbody>
+              <tr>
+                <td><span class="bi">9</span> Scope van het onderzoek:</td>
+                <td>{{scope1 or "-"}}</td>
+              </tr>
+               <tr>
+                <td><span class="bi">12</span> Steekproef:</td>
+                <td>{{samples1 or "-"}}</td>
+              </tr>
+               <tr>
+                <td><span class="bi">7</span>  Wcag-em:</td>
+                <td class="{{'green' if search1_1 == 'Present' else 'red'}}"><b>{{search1_1 or "-"}}</b></td>
+              </tr>
+              <tr>
+                <td><span class="bi">10</span> Basisniveau van toegankelijkheidsondersteuning:</td>
+                <td class="{{'green' if search1_2 == 'Present' else 'red'}}"><b>{{search1_2 or "-"}}</b></td>
+              </tr>
+              <tr>
+                <td><span class="bi">11</span> Gebruikte technologieën:</td>
+                <td class="{{'green' if search1_3 == 'Present' else 'red'}}"><b>{{search1_3 or "-"}}</b></td>
+              </tr>
+              <tr>
+                <td><span class="bi">13</span> Gebruikte browsers en softwareprogramma:</td>
+                <td class="{{'green' if search1_4 == 'Present' else 'red'}}"><b>{{search1_4 or "-"}}</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-body-tertiary border rounded-3 box">
+          <h4>Rapport 2</h4>
+          <table>
+            <tbody>
+              <tr>
+                <td><span class="bi">9</span> Scope van het onderzoek:</td>
+                <td>{{scope2 or "-"}}</td>
+              </tr>
+               <tr>
+                <td><span class="bi">12</span> Steekproef:</td>
+                <td>{{samples2 or "-"}}</td>
+              </tr>
+               <tr>
+                <td><span class="bi">7</span> Wcag-em:</td>
+                <td class="{{'green' if search2_1 == 'Present' else 'red'}}"><b>{{search2_1 or "-"}}</b></td>
+              </tr>
+              <tr>
+                <td><span class="bi">10</span> Basisniveau van toegankelijkheidsondersteuning:</td>
+                <td class="{{'green' if search2_2 == 'Present' else 'red'}}"><b>{{search2_2 or "-"}}</b></td>
+              </tr>
+              <tr>
+                <td><span class="bi">11</span> Gebruikte technologieën:</td>
+                <td class="{{'green' if search2_3 == 'Present' else 'red'}}"><b>{{search2_3 or "-"}}</b></td>
+              </tr>
+              <tr>
+                <td><span class="bi">13</span> Gebruikte browsers en softwareprogramma:</td>
+                <td class="{{'green' if search2_4 == 'Present' else 'red'}}"><b>{{search2_4 or "-"}}</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+     </div>
+  </div>
+
+     
+
+    {% endautoescape %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
